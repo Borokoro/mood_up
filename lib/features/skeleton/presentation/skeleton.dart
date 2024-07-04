@@ -25,7 +25,9 @@ class Skeleton extends StatelessWidget {
         return Scaffold(
           appBar: state.chosenScreen == 0 ? appBarForHome() : null,
           bottomNavigationBar: const BottomNavigationWidget(),
-          body: pages[state.chosenScreen],
+          body: SafeArea(
+              child: pages[state.chosenScreen]
+          ),
         );
       },
     );
