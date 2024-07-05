@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
-appBarForHome(){
+appBarForHome(BuildContext context){
   return AppBar(
-    title: const Text(
-      'Marvel Comics',
-      style: TextStyle(
-        fontFamily: 'Roboto',
-        fontSize: 24,
-        fontWeight: FontWeight.w700,
-      ),
+    elevation: 0,
+    automaticallyImplyLeading: true,
+    title: SizedBox(
+      width: MediaQuery.of(context).size.width,
+        child: const Text(
+          'Marvel Comics',
+          style: TextStyle(
+            fontFamily: 'Roboto',
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
     ),
   );
 }

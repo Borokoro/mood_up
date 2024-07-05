@@ -23,7 +23,8 @@ class Skeleton extends StatelessWidget {
     return BlocBuilder<BottomNavigationCubit, BottomNavigationChosenScreen>(
       builder: (context, state) {
         return Scaffold(
-          appBar: state.chosenScreen == 0 ? appBarForHome() : null,
+          extendBodyBehindAppBar: true,
+          appBar: state.chosenScreen == 0 ? appBarForHome(context) : null,
           bottomNavigationBar: const BottomNavigationWidget(),
           body: SafeArea(
               child: pages[state.chosenScreen]

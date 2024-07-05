@@ -8,6 +8,7 @@ import 'package:mood_up/features/home/data/repositories/home_repository_impl.dar
 import 'package:mood_up/features/home/domain/repositories/home_repository.dart';
 import 'package:mood_up/features/home/domain/usecases/fetch_comics_usecase.dart';
 import 'package:mood_up/features/home/presentation/bloc/home_bloc.dart';
+import 'package:mood_up/features/images/presentation/images_cubit.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
 final locator=GetIt.instance;
@@ -16,6 +17,7 @@ void setupLocator(){
 
   //cubit
   locator.registerFactory(() => BottomNavigationCubit());
+  locator.registerFactory(() => ImagesCubit());
 
   //bloc
   locator.registerFactory(() => HomeBloc(fetchComicsUseCase: locator()));

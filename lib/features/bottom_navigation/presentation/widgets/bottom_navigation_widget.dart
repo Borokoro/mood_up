@@ -11,14 +11,14 @@ class BottomNavigationWidget extends StatelessWidget {
       builder: (context, state) {
         return SafeArea(
           child: BottomAppBar(
+            height: 72,
             elevation: 0,
-            child: SizedBox(
-              width: 360,
-              height: 72,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 65),
+                  child: IconButton(
                     onPressed: () {
                       BlocProvider.of<BottomNavigationCubit>(context)
                           .changeScreen(state.chosenScreen, 0, context);
@@ -26,9 +26,13 @@ class BottomNavigationWidget extends StatelessWidget {
                     icon: Icon(
                       const IconData(0xe318, fontFamily: 'MaterialIcons'),
                       color: state.chosenScreen == 0 ? Colors.red : Colors.grey,
+                      size: 40,
                     ),
                   ),
-                  IconButton(
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 65),
+                  child: IconButton(
                     onPressed: () {
                       BlocProvider.of<BottomNavigationCubit>(context)
                           .changeScreen(state.chosenScreen, 1, context);
@@ -36,10 +40,11 @@ class BottomNavigationWidget extends StatelessWidget {
                     icon: Icon(
                       const IconData(0xe567, fontFamily: 'MaterialIcons'),
                       color: state.chosenScreen == 1 ? Colors.red : Colors.grey,
+                      size: 40,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
