@@ -11,7 +11,6 @@ abstract class HomeDataSource{
 class HomeDataSourceImpl extends HomeDataSource{
   final List<String> creators=['writer', 'editor', 'letterer'];
   final Dio dio;
-  int i=0;
   HomeDataSourceImpl({required this.dio});
 
   @override

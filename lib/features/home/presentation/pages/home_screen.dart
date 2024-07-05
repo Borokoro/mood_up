@@ -47,49 +47,50 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xff00000014),
-                          spreadRadius: 0,
-                          blurRadius: 24,
-                          offset: Offset(2, 6),
-                          blurStyle: BlurStyle.outer,
-                        )
-                      ]
-                    ),
+                    decoration:
+                        const BoxDecoration(color: Colors.white, boxShadow: [
+                      BoxShadow(
+                        color: Color(0xff00000014),
+                        spreadRadius: 0,
+                        blurRadius: 24,
+                        offset: Offset(2, 6),
+                        blurStyle: BlurStyle.outer,
+                      )
+                    ]),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                    imageCover('${state.data[index].imageUrl}/${c.imageHS}.${state.data[index].imageExtension}'),
-                         Expanded(
-                           child: SizedBox(
-                               height: 183,
-                             child: Padding(
-                               padding: const EdgeInsets.only(left: 10, top: 16),
-                                 child: Column(
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      title(state.data[index].title),
-                                      creators(state.data[index].writers),
-                                      const SizedBox(height: 16),
-                                      Expanded(
-                                          child: LayoutBuilder(
-                                            builder: (context, constraints) {
-                                            return Padding(
-                                            padding: const EdgeInsets.only(bottom: 14),
-                                            child: description(state.data[index].description, constraints.maxHeight, index),
-                                          );
-  },
-)
-                                      ),
-                                    ],
-                                  ),
-                             ),
-                           ),
-                         ),
+                        imageCover(
+                            '${state.data[index].imageUrl}/${c.imageHS}.${state.data[index].imageExtension}'),
+                        Expanded(
+                          child: SizedBox(
+                            height: 183,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10, top: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  title(state.data[index].title),
+                                  creators(state.data[index].writers),
+                                  const SizedBox(height: 16),
+                                  Expanded(child: LayoutBuilder(
+                                    builder: (context, constraints) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 14),
+                                        child: description(
+                                            state.data[index].description,
+                                            constraints.maxHeight,
+                                            index),
+                                      );
+                                    },
+                                  )),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   );

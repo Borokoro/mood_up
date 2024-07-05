@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +53,6 @@ creators(List<String> creators){
 }
 
 description(String description, double remainingHeight, int i){
-  if(description=="") print(i);
   return Text(
     description,
       softWrap: true,
