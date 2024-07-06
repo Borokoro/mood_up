@@ -19,6 +19,8 @@ class SearchDataSourceImpl extends SearchDataSource{
   Future<List<SearchDataModel>> fetchSearchResult(String searchPhrase) async{
     List<String> creatorsFromApi=[];
     List<SearchDataModel> dataFromApi=[];
+    String imageUrl="";
+    String imageExtension="";
     try{
       final response= await dio.get(
         "${c.gateway}?ts=${c.ts}&apikey=${s.publicKey}&hash=${s.hash}&format=${c.format}&noVariants="
@@ -31,8 +33,14 @@ class SearchDataSourceImpl extends SearchDataSource{
               creatorsFromApi.add(creator["name"]);
             }
           }
-          dataFromApi.add(SearchDataModel.fromApi(element, creatorsFromApi));
+          for(var image in element["images"]){
+            imageUrl=image['path'];
+            imageExtension=image['extension'];
+          }
+          dataFromApi.add(SearchDataModel.fromApi(element, creatorsFromApi, imageUrl, imageExtension));
           creatorsFromApi = [];
+          imageUrl="";
+          imageExtension="";
         }
         return dataFromApi;
       }

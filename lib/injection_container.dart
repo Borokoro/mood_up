@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mood_up/features/Search/presentation/bloc/search_bloc.dart';
+import 'package:mood_up/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mood_up/features/bottom_navigation/presentation/bloc/bottom_navigation_cubit.dart';
 import 'package:mood_up/features/home/data/datasources/home_data_source.dart';
 import 'package:mood_up/features/home/data/repositories/home_repository_impl.dart';

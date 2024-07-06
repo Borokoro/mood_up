@@ -1,7 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mood_up/features/Search/presentation/bloc/search_bloc.dart';
 
 imageCover(String imagePath) {
+  if(imagePath=="/portrait_xlarge."){
+    return SizedBox(
+      width: 116,
+      height: 183,
+      child: Image.asset('assets/icons/PlaceholderCover.png',
+        fit: BoxFit.fill,
+      ),
+    );
+  }
   return SizedBox(
     width: 116,
     height: 183,
@@ -68,61 +79,54 @@ description(String description, double remainingHeight, int i) {
 }
 
 initialStateView() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      SizedBox(
-        width: 80,
-        height: 62,
-        child: Image.asset('assets/icons/open-book.png'),
-      ),
-      const Text('Start typing to find a particular comics.',
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontFamily: 'Roboto',
-            color: Color(0xff262424),
-            fontSize: 18,
-          )),
-    ],
-  );
-}
-
-noResultsFound(){
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      SizedBox(
-        width: 62,
-        height: 62,
-        child: Image.asset('assets/icons/find.png'),
-      ),
-      const Expanded(
-        child: Text('There is no comic book with that name in our library. Check the spelling and try again.',
-            softWrap: true,
+  return Padding(
+    padding: const EdgeInsets.only(top: 256),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 80,
+          height: 62,
+          child: Image.asset('assets/icons/open-book.png'),
+        ),
+        const Text('Start typing to find a particular comics.',
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontFamily: 'Roboto',
               color: Color(0xff262424),
               fontSize: 18,
             )),
-      ),
-    ],
-  );
-}
-
-searchBarInitialState(TextEditingController searchController){
-  return TextFormField(
-    controller: searchController,
-    decoration: InputDecoration(
-      hintText: 'Search for a comic book',
-      hintStyle: TextStyle(
-        fontFamily: 'Roboto',
-        fontWeight: FontWeight.w400,
-        fontSize: 16,
-        color: Color(0xffb1b1b1),
-      ),
+      ],
     ),
   );
 }
+
+noResultsFound() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 197, left: 17, right: 17),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 62,
+          height: 62,
+          child: Image.asset('assets/icons/find.png'),
+        ),
+        SizedBox(height: 10,),
+        const Expanded(
+          child: Text(
+              'There is no comic book with that name in our library. Check the spelling and try again.',
+              softWrap: true,
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+                color: Color(0xff262424),
+                fontSize: 18,
+              )),
+        ),
+      ],
+    ),
+  );
+}
+

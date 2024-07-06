@@ -9,13 +9,13 @@ class SearchDataModel extends HomeEntity{
     required super.imageExtension,
   });
 
-  factory SearchDataModel.fromApi(Map<String, dynamic> json, List<String> creators){
+  factory SearchDataModel.fromApi(Map<String, dynamic> json, List<String> creators, String imageUrl, String imageExtension){
     return SearchDataModel(
       description: json['description'],
-      imageUrl: json['images'][0]['path'],
+      imageUrl: imageUrl,
       title: json['title'],
       writers: creators,
-      imageExtension: json['images'][0]['extension'],
+      imageExtension: imageExtension,
     );
   }
 

@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (stateImg is ImagesInitialState) {
             BlocProvider.of<ImagesCubit>(context)
                 .cacheAllImages(context, state.data);
-            return const CircularProgressIndicator();
+            return Center(child: const CircularProgressIndicator());
           }
           if (stateImg is ImagesLoadingState) {
             return const CircularProgressIndicator();

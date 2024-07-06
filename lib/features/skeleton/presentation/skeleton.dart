@@ -8,8 +8,8 @@ import 'package:mood_up/features/skeleton/presentation/widgets/skeleton_widgets.
 import '../../bottom_navigation/presentation/bloc/bottom_navigation_cubit.dart';
 
 List<Widget> pages = const[
-  SearchScreen(),
   HomeScreen(),
+  SearchScreen(),
 ];
 
 class Skeleton extends StatelessWidget {

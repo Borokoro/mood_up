@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mood_up/bloc_observer.dart';
-import 'package:mood_up/features/Search/presentation/bloc/search_bloc.dart';
+import 'package:mood_up/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mood_up/features/bottom_navigation/presentation/bloc/bottom_navigation_cubit.dart';
 import 'package:mood_up/features/images/presentation/images_cubit.dart';
 import 'package:routemaster/routemaster.dart';

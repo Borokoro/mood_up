@@ -10,19 +10,28 @@ part 'images_state.dart';
 class ImagesCubit extends Cubit<ImagesState> {
   ImagesCubit() : super(ImagesInitialState());
 
-  void cacheAllImages(BuildContext context, List<HomeDataModel> homeDataModel) async {
+  void cacheAllImages(
+      BuildContext context, List<HomeDataModel> homeDataModel) async {
     emit(ImagesLoadingState());
-    for(int i=0; i<homeDataModel.length; i++){
-      await precacheImage(NetworkImage('${homeDataModel[i].imageUrl}/${c.imageHS}.${homeDataModel[i].imageExtension}'), context);
+    for (int i = 0; i < homeDataModel.length; i++) {
+      await precacheImage(
+          NetworkImage(
+              '${homeDataModel[i].imageUrl}/${c.imageHS}.${homeDataModel[i].imageExtension}'),
+          context);
     }
     emit(ImagesLoadedState());
   }
 
-  void cacheAllImagesSearch(BuildContext context, List<SearchDataModel> searchDataModel) async {
+  void cacheAllImagesSearch(
+      BuildContext context, List<SearchDataModel> searchDataModel) async {
     emit(ImagesLoadingState());
-    for(int i=0; i<searchDataModel.length; i++){
-      await precacheImage(NetworkImage('${searchDataModel[i].imageUrl}/${c.imageHS}.${searchDataModel[i].imageExtension}'), context);
+    for (int i = 0; i < searchDataModel.length; i++) {
+      await precacheImage(
+          NetworkImage(
+              '${searchDataModel[i].imageUrl}/${c.imageHS}.${searchDataModel[i].imageExtension}'),
+          context);
     }
     emit(ImagesLoadedState());
   }
+
 }
