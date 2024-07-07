@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mood_up/features/details/presentation/pages/detail_screen.dart';
 import 'package:mood_up/features/home/presentation/bloc/home_bloc.dart';
 import 'package:mood_up/features/home/presentation/widgets/home_widgets.dart';
 import 'package:mood_up/features/images/presentation/images_cubit.dart';
@@ -19,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    if(context.read<HomeBloc>().state.data.isEmpty) {
+    if (context.read<HomeBloc>().state.data.isEmpty) {
       context.read<HomeBloc>().add(const FetchComicsEvent());
     }
     super.initState();
@@ -43,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (stateImg is ImagesInitialState) {
             BlocProvider.of<ImagesCubit>(context)
                 .cacheAllImages(context, state.data);
-            return Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (stateImg is ImagesLoadingState) {
             return const CircularProgressIndicator();
@@ -53,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       context.read<DetailCubit>().changeDetailIndex(index);
                       context.read<SkeletonCubit>().goToDetailPage();
                     },
@@ -77,7 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                               height: 183,
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 16),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 16),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,

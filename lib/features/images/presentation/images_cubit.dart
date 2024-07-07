@@ -33,5 +33,4 @@ class ImagesCubit extends Cubit<ImagesState> {
     }
     emit(ImagesLoadedState());
   }
-
 }

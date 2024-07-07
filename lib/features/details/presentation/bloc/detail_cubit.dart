@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 part 'detail_state.dart';
 
 class DetailCubit extends Cubit<DetailState> {
-  DetailCubit() : super(DetailState(0));
+  DetailCubit() : super(const DetailState(0));
 
-  void changeDetailIndex(int index){
+  void changeDetailIndex(int index) {
     emit(DetailState(index));
   }
 }

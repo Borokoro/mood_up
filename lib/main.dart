@@ -7,8 +7,7 @@ import 'package:mood_up/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mood_up/features/bottom_navigation/presentation/bloc/bottom_navigation_cubit.dart';
 import 'package:mood_up/features/images/presentation/images_cubit.dart';
 import 'package:mood_up/features/skeleton/presentation/bloc/skeleton_cubit.dart';
-import 'package:routemaster/routemaster.dart';
-import 'package:mood_up/config/routes.dart' as r;
+import 'package:mood_up/features/skeleton/presentation/skeleton.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'injection_container.dart';
 
@@ -35,25 +34,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => locator<SkeletonCubit>()),
         BlocProvider(create: (_) => locator<DetailCubit>()),
       ],
-     /* child: MaterialApp(
+      child: MaterialApp(
         theme: ThemeData.light(),
         title: 'MoodUp',
         debugShowCheckedModeBanner: false,
-        routes: {
-          '/': (context) => HomeScreen(),
-          '/Search': (context) => SearchScreen(),
-        },
+        home: const Skeleton(),
       ),
-    ); */
-    child: MaterialApp.router(
-          theme: ThemeData.light(),
-          title: 'MoodUp',
-          debugShowCheckedModeBanner: false,
-          routeInformationParser: const RoutemasterParser(),
-          routerDelegate: RoutemasterDelegate(
-            routesBuilder: (context) => r.Router.onboardingCompletedRouteMap,
-          ),
-        ),
     );
   }
 }

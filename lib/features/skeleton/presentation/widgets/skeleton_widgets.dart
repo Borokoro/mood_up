@@ -27,32 +27,32 @@ appBarForDetail(BuildContext context) {
     leading: Padding(
       padding: const EdgeInsets.only(top: 20, left: 16),
       child: IconButton(
-            //iconSize: 18.0,
-            onPressed: () {
-              context.read<SkeletonCubit>().goFromDetailPage();
-            },
-            icon: const Icon(IconData(
-              0xe092,
-              fontFamily: 'MaterialIcons',
-            )),
-          ),
+        //iconSize: 18.0,
+        onPressed: () {
+          context.read<SkeletonCubit>().goFromDetailPage();
+        },
+        icon: const Icon(IconData(
+          0xe092,
+          fontFamily: 'MaterialIcons',
+        )),
+      ),
     ),
     title: const Padding(
       padding: EdgeInsets.only(top: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Details',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Details',
+            style: TextStyle(
+              fontFamily: 'Roboto',
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     ),
   );
 }

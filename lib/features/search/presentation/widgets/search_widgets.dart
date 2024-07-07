@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mood_up/features/Search/presentation/bloc/search_bloc.dart';
 
 imageCover(String imagePath) {
-  if(imagePath=="/portrait_xlarge."){
+  if (imagePath == "/portrait_xlarge.") {
     return SizedBox(
       width: 116,
       height: 183,
-      child: Image.asset('assets/icons/PlaceholderCover.png',
+      child: Image.asset(
+        'assets/icons/PlaceholderCover.png',
         fit: BoxFit.fill,
       ),
     );
@@ -113,7 +112,9 @@ noResultsFound() {
           height: 62,
           child: Image.asset('assets/icons/find.png'),
         ),
-        SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         const Expanded(
           child: Text(
               'There is no comic book with that name in our library. Check the spelling and try again.',
@@ -129,4 +130,3 @@ noResultsFound() {
     ),
   );
 }
-

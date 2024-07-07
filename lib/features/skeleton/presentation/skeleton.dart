@@ -9,13 +9,12 @@ import 'package:mood_up/features/skeleton/presentation/widgets/skeleton_widgets.
 
 import '../../bottom_navigation/presentation/bloc/bottom_navigation_cubit.dart';
 
-List<Widget> pages = const[
+List<Widget> pages = const [
   HomeScreen(),
   SearchScreen(),
 ];
 
 class Skeleton extends StatelessWidget {
-
   static const String route = '/';
 
   const Skeleton({super.key});
@@ -28,11 +27,16 @@ class Skeleton extends StatelessWidget {
           builder: (context, stateDetail) {
             return Scaffold(
               extendBodyBehindAppBar: true,
-              appBar: stateDetail.isDetailPage ? appBarForDetail(context) : state.chosenScreen == 0 ? appBarForHome(context) : null,
+              appBar: stateDetail.isDetailPage
+                  ? appBarForDetail(context)
+                  : state.chosenScreen == 0
+                      ? appBarForHome(context)
+                      : null,
               bottomNavigationBar: const BottomNavigationWidget(),
               body: SafeArea(
-                  child: stateDetail.isDetailPage ? const DetailScreen() : pages[state.chosenScreen]
-              ),
+                  child: stateDetail.isDetailPage
+                      ? const DetailScreen()
+                      : pages[state.chosenScreen]),
             );
           },
         );

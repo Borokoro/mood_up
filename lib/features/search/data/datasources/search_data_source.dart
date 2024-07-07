@@ -5,46 +5,51 @@ import 'package:mood_up/core/secrets/app_secrets.dart' as s;
 
 import '../../../../core/error/exceptions.dart';
 
-abstract class SearchDataSource{
+abstract class SearchDataSource {
   Future<List<SearchDataModel>> fetchSearchResult(String searchPhrase);
 }
 
-class SearchDataSourceImpl extends SearchDataSource{
-
-  final List<String> creators=['writer', 'editor', 'letterer'];
+class SearchDataSourceImpl extends SearchDataSource {
+  final List<String> creators = ['writer', 'editor', 'letterer'];
   final Dio dio;
   SearchDataSourceImpl({required this.dio});
 
   @override
-  Future<List<SearchDataModel>> fetchSearchResult(String searchPhrase) async{
-    List<String> creatorsFromApi=[];
-    List<SearchDataModel> dataFromApi=[];
-    String imageUrl="";
-    String imageExtension="";
-    try{
-      final response= await dio.get(
+  Future<List<SearchDataModel>> fetchSearchResult(String searchPhrase) async {
+    List<String> creatorsFromApi = [];
+    List<SearchDataModel> dataFromApi = [];
+    String imageUrl = "";
+    String imageExtension = "";
+    String detail = "";
+    try {
+      final response = await dio.get(
         "${c.gateway}?ts=${c.ts}&apikey=${s.publicKey}&hash=${s.hash}&format=${c.format}&noVariants="
-            "${c.noVariants}&limit=${c.limit}&hasDigitalIssue=&titleStartsWith=$searchPhrase",
+        "${c.noVariants}&limit=${c.limit}&hasDigitalIssue=&titleStartsWith=$searchPhrase",
       );
-      if(response.statusCode==200) {
+      if (response.statusCode == 200) {
         for (var element in response.data["data"]["results"]) {
           for (var creator in element['creators']["items"]) {
             if (creators.contains(creator["role"])) {
               creatorsFromApi.add(creator["name"]);
             }
           }
-          for(var image in element["images"]){
-            imageUrl=image['path'];
-            imageExtension=image['extension'];
+          for (var image in element["images"]) {
+            imageUrl = image['path'];
+            imageExtension = image['extension'];
           }
-          dataFromApi.add(SearchDataModel.fromApi(element, creatorsFromApi, imageUrl, imageExtension));
+          for (var detailUrl in element['urls']) {
+            if (detailUrl["type"] == "detail") {
+              detail = detailUrl["url"];
+            }
+          }
+          dataFromApi.add(SearchDataModel.fromApi(
+              element, creatorsFromApi, imageUrl, imageExtension, detail));
           creatorsFromApi = [];
-          imageUrl="";
-          imageExtension="";
+          imageUrl = "";
+          imageExtension = "";
         }
         return dataFromApi;
-      }
-      else{
+      } else {
         throw ApiException();
       }
     } on DioException catch (e) {

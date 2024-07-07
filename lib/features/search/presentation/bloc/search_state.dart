@@ -1,31 +1,30 @@
 part of 'search_bloc.dart';
 
-class SearchState extends Equatable{
-
+class SearchState extends Equatable {
   const SearchState();
 
   @override
   List<Object> get props => [];
 }
 
-class SearchInitialState extends SearchState{
+class SearchInitialState extends SearchState {
   final List<SearchDataModel> data;
-  const SearchInitialState({this.data=const[]});
+  const SearchInitialState({this.data = const []});
 
   @override
   List<Object> get props => [
-    data,
-  ];
+        data,
+      ];
 }
 
-class SearchLoading extends SearchState{
+class SearchLoading extends SearchState {
   const SearchLoading();
 
   @override
   List<Object> get props => [];
 }
 
-class SearchError extends SearchState{
+class SearchError extends SearchState {
   final String message;
   const SearchError({required this.message});
 
@@ -33,12 +32,12 @@ class SearchError extends SearchState{
   List<Object> get props => [message];
 }
 
-class SearchLoaded extends SearchState{
+class SearchLoaded extends SearchState {
   final List<SearchDataModel> data;
   const SearchLoaded({required this.data});
 
   @override
   List<Object> get props => [
-    data,
-  ];
+        data,
+      ];
 }

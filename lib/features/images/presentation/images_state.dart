@@ -1,17 +1,17 @@
 part of 'images_cubit.dart';
 
-abstract class ImagesState{
+abstract class ImagesState {
   const ImagesState();
 }
 
-class ImagesInitialState extends ImagesState{
+class ImagesInitialState extends ImagesState {
   ImagesInitialState();
 }
 
-class ImagesLoadingState extends ImagesState{
+class ImagesLoadingState extends ImagesState {
   ImagesLoadingState();
 }
 
-class ImagesLoadedState extends ImagesState{
+class ImagesLoadedState extends ImagesState {
   ImagesLoadedState();
 }
