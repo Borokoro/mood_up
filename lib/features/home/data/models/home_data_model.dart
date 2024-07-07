@@ -1,38 +1,42 @@
 import 'package:mood_up/features/home/domain/entities/home_entity.dart';
 
-class HomeDataModel extends HomeEntity{
+class HomeDataModel extends HomeEntity {
   const HomeDataModel({
     required super.description,
     required super.imageUrl,
     required super.title,
     required super.writers,
     required super.imageExtension,
-});
+    required super.detailsUrl,
+  });
 
-  factory HomeDataModel.fromApi(Map<String, dynamic> json, List<String> creators){
+  factory HomeDataModel.fromApi(
+      Map<String, dynamic> json, List<String> creators, String detail) {
     return HomeDataModel(
-        description: json['description'],
-        imageUrl: json['images'][0]['path'],
-        title: json['title'],
-        writers: creators,
-        imageExtension: json['images'][0]['extension'],
+      description: json['description'],
+      imageUrl: json['images'][0]['path'],
+      title: json['title'],
+      writers: creators,
+      imageExtension: json['images'][0]['extension'],
+      detailsUrl: detail,
     );
   }
 
   Map<String, dynamic> toJson() => {
-    "description": description,
-    "imageUrl": imageUrl,
-    "title": title,
-    "writers": writers,
-    "imageExtension": imageExtension,
-  };
+        "description": description,
+        "imageUrl": imageUrl,
+        "title": title,
+        "writers": writers,
+        "imageExtension": imageExtension,
+      };
 
-  factory HomeDataModel.fromEntity(HomeEntity entity){
+  factory HomeDataModel.fromEntity(HomeEntity entity) {
     return HomeDataModel(
         description: entity.description,
         imageUrl: entity.imageUrl,
         title: entity.title,
         writers: entity.writers,
-        imageExtension: entity.imageExtension);
+        imageExtension: entity.imageExtension,
+        detailsUrl: entity.detailsUrl);
   }
 }

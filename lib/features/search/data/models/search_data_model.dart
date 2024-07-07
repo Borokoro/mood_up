@@ -1,6 +1,7 @@
 import 'package:mood_up/features/home/domain/entities/home_entity.dart';
+import 'package:mood_up/features/search/domain/entities/search_entity.dart';
 
-class SearchDataModel extends HomeEntity{
+class SearchDataModel extends SearchEntity{
   const SearchDataModel({
     required super.description,
     required super.imageUrl,

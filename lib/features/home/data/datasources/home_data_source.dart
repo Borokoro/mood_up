@@ -17,6 +17,7 @@ class HomeDataSourceImpl extends HomeDataSource{
   Future<List<HomeDataModel>> fetchComics() async{
     List<String> creatorsFromApi=[];
     List<HomeDataModel> dataFromApi=[];
+    String detail="";
     try{
       final response= await dio.get(
         "${c.gateway}?ts=${c.ts}&apikey=${s.publicKey}&hash=${s.hash}&format=${c.format}&noVariants=${c.noVariants}&limit=${c.limit}&hasDigitalIssue=",
@@ -28,7 +29,12 @@ class HomeDataSourceImpl extends HomeDataSource{
                 creatorsFromApi.add(creator["name"]);
               }
             }
-            dataFromApi.add(HomeDataModel.fromApi(element, creatorsFromApi));
+            for(var detailUrl in element['urls']){
+              if(detailUrl["type"]=="detail"){
+                detail=detailUrl["url"];
+              }
+            }
+            dataFromApi.add(HomeDataModel.fromApi(element, creatorsFromApi, detail));
             creatorsFromApi = [];
         }
         return dataFromApi;

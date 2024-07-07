@@ -6,6 +6,7 @@ class HomeEntity extends Equatable{
   final String description;
   final List<String> writers;
   final String imageExtension;
+  final String detailsUrl;
 
   const HomeEntity({
     required this.title,
@@ -13,6 +14,7 @@ class HomeEntity extends Equatable{
     required this.imageUrl,
     required this.writers,
     required this.imageExtension,
+    required this.detailsUrl,
 });
 
   @override
@@ -22,5 +24,6 @@ class HomeEntity extends Equatable{
     imageUrl,
     writers,
     imageExtension,
+    detailsUrl,
   ];
 }

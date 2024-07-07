@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mood_up/features/details/presentation/bloc/detail_cubit.dart';
 import 'package:mood_up/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mood_up/features/bottom_navigation/presentation/bloc/bottom_navigation_cubit.dart';
 import 'package:mood_up/features/home/data/datasources/home_data_source.dart';
@@ -12,6 +13,7 @@ import 'package:mood_up/features/search/data/datasources/search_data_source.dart
 import 'package:mood_up/features/search/data/repositories/search_repository_impl.dart';
 import 'package:mood_up/features/search/domain/repositories/search_repository.dart';
 import 'package:mood_up/features/search/domain/usecases/fetch_search_result_usecase.dart';
+import 'package:mood_up/features/skeleton/presentation/bloc/skeleton_cubit.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
 final locator=GetIt.instance;
@@ -21,6 +23,8 @@ void setupLocator(){
   //cubit
   locator.registerFactory(() => BottomNavigationCubit());
   locator.registerFactory(() => ImagesCubit());
+  locator.registerFactory(() => SkeletonCubit());
+  locator.registerFactory(() => DetailCubit());
 
   //bloc
   locator.registerFactory(() => SearchBloc(fetchSearchResultUseCase: locator()));
