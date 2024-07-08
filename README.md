@@ -1,6 +1,6 @@
 # 1
 
-No tests. I don't know how to do the tests with Bloc and remote repository.
+No tests. I had a problem writing tests with remote repository.
 
 # 2
 
@@ -8,5 +8,4 @@ Button in details takes you to the website after second click. First click chang
 
 # 3
 
-I used extra parameters when fetching data from Api. I used noVariants and hasDigitalIssue parameters because I couldn't deal with a problem where description was
-in textObjects cell.
+I used extra parameters when fetching data from Api. I used noVariants and hasDigitalIssue parameters because of better results.
