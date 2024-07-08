@@ -10,7 +10,6 @@ import '../../../details/presentation/bloc/detail_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-  static const String route = '/home';
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }

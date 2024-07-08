@@ -9,7 +9,6 @@ import '../bloc/search_bloc.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
-  static const String route = '/search';
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
@@ -18,96 +17,12 @@ class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchController = TextEditingController();
 
   @override
-  void initState() {
-    context.read<SearchBloc>().add(const ClearSearchResultEvent());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
       if (state is SearchLoading) {
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-              child: Row(
-                children: [
-                  Container(
-                    width: 270,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xff00000014),
-                          spreadRadius: 0,
-                          blurRadius: 24,
-                          offset: Offset(2, 6),
-                          blurStyle: BlurStyle.outer,
-                        )
-                      ],
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Center(
-                      child: Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Icon(
-                              IconData(0xe567, fontFamily: 'MaterialIcons'),
-                              size: 20,
-                              color: Color(0xff7e7e7e),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                              onFieldSubmitted: (searchController) {
-                                BlocProvider.of<SearchBloc>(context).add(
-                                    FetchSearchResultEvent(
-                                        searchPhrase: searchController));
-                              },
-                              controller: searchController,
-                              decoration: const InputDecoration.collapsed(
-                                hintText: 'Search for a comic book',
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                  color: Color(0xffb1b1b1),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: TextButton(
-                          onPressed: () {
-                            searchController.text = "";
-                            context
-                                .read<SearchBloc>()
-                                .add(const ClearSearchResultEvent());
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                              color: Color(0xffb1b1b1),
-                            ),
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            searchBarLoadingOrLoaded(context, searchController),
             const Expanded(
                 child: Center(
               child: SizedBox(
@@ -124,62 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
       if (state is SearchInitialState) {
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-              child: Container(
-                //width: 328,
-                height: 40,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xff00000014),
-                      spreadRadius: 0,
-                      blurRadius: 24,
-                      offset: Offset(2, 6),
-                      blurStyle: BlurStyle.outer,
-                    )
-                  ],
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                child: Center(
-                  child: Row(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Icon(
-                          IconData(0xe567, fontFamily: 'MaterialIcons'),
-                          size: 20,
-                          color: Color(0xffcfcfcf),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          onFieldSubmitted: (searchController) {
-                            BlocProvider.of<SearchBloc>(context).add(
-                                FetchSearchResultEvent(
-                                    searchPhrase: searchController));
-                          },
-                          controller: searchController,
-                          decoration: const InputDecoration.collapsed(
-                            hintText: 'Search for a comic book',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              color: Color(0xffb1b1b1),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            searchBarInitial(context, searchController),
             initialStateView(),
           ],
         );
@@ -188,85 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
         if (state.data.isEmpty) {
           return Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 270,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xff00000014),
-                            spreadRadius: 0,
-                            blurRadius: 24,
-                            offset: Offset(2, 6),
-                            blurStyle: BlurStyle.outer,
-                          )
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Icon(
-                                IconData(0xe567, fontFamily: 'MaterialIcons'),
-                                size: 20,
-                                color: Color(0xff7e7e7e),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: TextFormField(
-                                onFieldSubmitted: (searchController) {
-                                  BlocProvider.of<SearchBloc>(context).add(
-                                      FetchSearchResultEvent(
-                                          searchPhrase: searchController));
-                                },
-                                controller: searchController,
-                                decoration: const InputDecoration.collapsed(
-                                  hintText: 'Search for a comic book',
-                                  hintStyle: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: Color(0xffb1b1b1),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: TextButton(
-                            onPressed: () {
-                              searchController.text = "";
-                              context
-                                  .read<SearchBloc>()
-                                  .add(const ClearSearchResultEvent());
-                            },
-                            child: const Text(
-                              'Cancel',
-                              style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 16,
-                                color: Color(0xffb1b1b1),
-                              ),
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              searchBarLoadingOrLoaded(context, searchController),
               Expanded(
                   child: Center(
                 child: noResultsFound(),
@@ -286,85 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
             }
             return Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 270,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0xff00000014),
-                              spreadRadius: 0,
-                              blurRadius: 24,
-                              offset: Offset(2, 6),
-                              blurStyle: BlurStyle.outer,
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Icon(
-                                  IconData(0xe567, fontFamily: 'MaterialIcons'),
-                                  size: 20,
-                                  color: Color(0xff7e7e7e),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: TextFormField(
-                                  onFieldSubmitted: (searchController) {
-                                    BlocProvider.of<SearchBloc>(context).add(
-                                        FetchSearchResultEvent(
-                                            searchPhrase: searchController));
-                                  },
-                                  controller: searchController,
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: 'Search for a comic book',
-                                    hintStyle: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16,
-                                      color: Color(0xffb1b1b1),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: TextButton(
-                              onPressed: () {
-                                searchController.text = "";
-                                context
-                                    .read<SearchBloc>()
-                                    .add(const ClearSearchResultEvent());
-                              },
-                              child: const Text(
-                                'Cancel',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 16,
-                                  color: Color(0xffb1b1b1),
-                                ),
-                              )),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                searchBarLoadingOrLoaded(context, searchController),
                 const SizedBox(
                   height: 16,
                 ),
@@ -449,7 +153,7 @@ class _SearchScreenState extends State<SearchScreen> {
         );
       }
       return const Center(
-        child: Text('Error123'),
+        child: Text('Error'),
       );
     });
   }
