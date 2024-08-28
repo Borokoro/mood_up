@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDMX4j0qZKe9TY6Wo92CjnS_DZs6FKwGkg',
-    appId: '1:449420785682:android:32dcb85768fa2bf4b940cb',
+    appId: '1:449420785682:android:9437d1b528fef305b940cb',
     messagingSenderId: '449420785682',
     projectId: 'moodup-95a74',
     storageBucket: 'moodup-95a74.appspot.com',
@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'moodup-95a74.appspot.com',
     iosBundleId: 'com.example.moodUp',
   );
+
 }

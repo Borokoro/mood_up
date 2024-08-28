@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:449420785682:android:9437d1b528fef305b940cb",
+        "android_client_info": {
+          "package_name": "com.example.mood_up"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMX4j0qZKe9TY6Wo92CjnS_DZs6FKwGkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:449420785682:android:32dcb85768fa2bf4b940cb",
         "android_client_info": {
           "package_name": "com.mood_upp.app"

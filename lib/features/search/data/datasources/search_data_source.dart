@@ -22,10 +22,11 @@ class SearchDataSourceImpl extends SearchDataSource {
     String imageExtension = "";
     String detail = "";
     String apiKey= await AppSecrets().publicKey;
-    String hash= await AppSecrets().hash;
+    DateTime ts= DateTime.now();
+    String hash= await AppSecrets().getHash(ts.microsecondsSinceEpoch);
     try {
       final response = await dio.get(
-        "${c.gateway}?ts=${c.ts}&apikey=$apiKey&hash=$hash&format=${c.format}&noVariants="
+        "${c.gateway}?ts=${ts.microsecondsSinceEpoch}&apikey=$apiKey&hash=$hash&format=${c.format}&noVariants="
         "${c.noVariants}&limit=${c.limit}&hasDigitalIssue=&titleStartsWith=$searchPhrase",
       );
       if (response.statusCode == 200) {

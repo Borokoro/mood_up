@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 
 class AppSecrets{
   static String? _publicKey;
-  static String? _hash;
 
   Future<String> get publicKey async{
     if(_publicKey !=null){
@@ -10,14 +12,6 @@ class AppSecrets{
     }
     _publicKey= await _getPublicKey();
     return _publicKey!;
-  }
-
-  Future<String> get hash async{
-    if(_hash !=null){
-      return _hash!;
-    }
-    _hash= await _getHash();
-    return _hash!;
   }
 
   Future<String> _getPublicKey() async{
@@ -30,13 +24,14 @@ class AppSecrets{
     return "error";
   }
 
-  Future<String> _getHash() async{
+  Future<String> getHash(int time) async{
+    late String privateKey;
     final CollectionReference<Map<String, dynamic>> apiKeyCollection =
-    FirebaseFirestore.instance.collection("hash");
+    FirebaseFirestore.instance.collection("privateKey");
     final document=await apiKeyCollection.get();
     for (var element in document.docs){
-      return element.data()['hash'];
+      privateKey=element.data()['privateKey'];
     }
-    return "error";
+    return md5.convert(utf8.encode('$time$privateKey$_publicKey')).toString();
   }
 }
