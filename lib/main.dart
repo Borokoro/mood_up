@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:mood_up/features/bottom_navigation/presentation/bloc/bottom_navi
 import 'package:mood_up/features/images/presentation/images_cubit.dart';
 import 'package:mood_up/features/skeleton/presentation/bloc/skeleton_cubit.dart';
 import 'package:mood_up/features/skeleton/presentation/skeleton.dart';
+import 'package:mood_up/firebase_options.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'injection_container.dart';
 
@@ -17,6 +19,9 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Bloc.observer = MyBlocObserver();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

@@ -8,7 +8,6 @@ abstract class Failure extends Equatable {
   List<Object> get props => [];
 }
 
-// General failures
 class ApiFailure extends Failure {
   const ApiFailure(super.message);
 }

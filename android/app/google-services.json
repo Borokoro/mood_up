@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "449420785682",
+    "project_id": "moodup-95a74",
+    "storage_bucket": "moodup-95a74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449420785682:android:32dcb85768fa2bf4b940cb",
+        "android_client_info": {
+          "package_name": "com.mood_upp.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMX4j0qZKe9TY6Wo92CjnS_DZs6FKwGkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

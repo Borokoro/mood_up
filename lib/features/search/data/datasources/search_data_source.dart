@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:mood_up/features/search/data/models/search_data_model.dart';
 import 'package:mood_up/core/constants/constants.dart' as c;
-import 'package:mood_up/core/secrets/app_secrets.dart' as s;
+import 'package:mood_up/core/secrets/app_secrets.dart';
 
 import '../../../../core/error/exceptions.dart';
 
@@ -21,9 +21,11 @@ class SearchDataSourceImpl extends SearchDataSource {
     String imageUrl = "";
     String imageExtension = "";
     String detail = "";
+    String apiKey= await AppSecrets().publicKey;
+    String hash= await AppSecrets().hash;
     try {
       final response = await dio.get(
-        "${c.gateway}?ts=${c.ts}&apikey=${s.publicKey}&hash=${s.hash}&format=${c.format}&noVariants="
+        "${c.gateway}?ts=${c.ts}&apikey=$apiKey&hash=$hash&format=${c.format}&noVariants="
         "${c.noVariants}&limit=${c.limit}&hasDigitalIssue=&titleStartsWith=$searchPhrase",
       );
       if (response.statusCode == 200) {

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:mood_up/core/error/exceptions.dart';
 import 'package:mood_up/features/home/data/models/home_data_model.dart';
 import 'package:mood_up/core/constants/constants.dart' as c;
-import 'package:mood_up/core/secrets/app_secrets.dart' as s;
+import 'package:mood_up/core/secrets/app_secrets.dart';
 
 abstract class HomeDataSource {
   Future<List<HomeDataModel>> fetchComics();
@@ -18,9 +18,11 @@ class HomeDataSourceImpl extends HomeDataSource {
     List<String> creatorsFromApi = [];
     List<HomeDataModel> dataFromApi = [];
     String detail = "";
+    String apiKey= await AppSecrets().publicKey;
+    String hash= await AppSecrets().hash;
     try {
       final response = await dio.get(
-        "${c.gateway}?ts=${c.ts}&apikey=${s.publicKey}&hash=${s.hash}&format=${c.format}&noVariants=${c.noVariants}&limit=${c.limit}&hasDigitalIssue=",
+        "${c.gateway}?ts=${c.ts}&apikey=$apiKey&hash=$hash&format=${c.format}&noVariants=${c.noVariants}&limit=${c.limit}&hasDigitalIssue=",
       );
       if (response.statusCode == 200) {
         for (var element in response.data["data"]["results"]) {

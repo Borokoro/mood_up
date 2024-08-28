@@ -15,7 +15,6 @@ List<Widget> pages = const [
 ];
 
 class Skeleton extends StatelessWidget {
-  static const String route = '/';
 
   const Skeleton({super.key});
 

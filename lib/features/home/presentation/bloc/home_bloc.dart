@@ -10,7 +10,6 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchComicsUseCase fetchComicsUseCase;
-  late List<HomeDataModel> comicsList;
 
   HomeBloc({required this.fetchComicsUseCase}) : super(const HomeState()) {
     on<FetchComicsEvent>(_onFetchComicsEvent);
